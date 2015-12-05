@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Sample Page</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">Post a tweet with an Mp4 video</p:layoutUnit>
+
+                <p:layoutUnit position="west" size="275">
+                    <p:menu>
+                        <p:submenu label="Upload a Tweet"></p:submenu>
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <h:form enctype="multipart/form-data" prependId="false">
+                        <p:growl id="messages" showDetail="true" />
+                        
+                        <h:panelGrid id="formLayout" columns="3" cellpadding="5">
+                            <h:outputLabel for="mp4VideoUploader" value="Video to Upload" style="font-weight:bold"/>
+                            <p:fileUpload id="mp4VideoUploader" value="#{fileUploadView.file}" mode="simple"/>
+                            <p:message for="mp4VideoUploader" />
+                            
+                            <h:outputLabel for="tweetMessage" value="Tweet Message" style="font-weight:bold"/>
+                            <p:inputText id="tweetMessage" value="#{fileUploadView.tweetMessage}" required="true" />
+                            <p:message for="tweetMessage" />
+                            
+                            <p:commandButton validateClient="true" value="Tweet now!" ajax="false" actionListener="#{fileUploadView.upload}" />
+                        </h:panelGrid>
+
+                    </h:form>
+                </p:layoutUnit>
+
+                <!--<p:layoutUnit position="east" size="100" closable="true" collapsible="true">Right</p:layoutUnit>-->
+                
+                <!--<p:layoutUnit position="south" size="100" closable="true" collapsible="true">footer</p:layoutUnit>-->
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
